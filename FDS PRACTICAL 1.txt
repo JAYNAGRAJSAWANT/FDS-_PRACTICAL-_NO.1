@@ -1,0 +1,89 @@
+"""1	In second year computer engineering class, group A student’s play cricket, group B students play badminton and group C students play football.
+Write a Python program using functions to compute following: -
+a)	List of students who play both cricket and badminton
+b)	List of students who play either cricket or badminton but not both
+c)	Number of students who play neither cricket nor badminton
+d)	Number of students who play cricket and football but not badminton.
+(Note- While realizing the group, duplicate entries should be avoided, Do not use SET built- in functions)"""
+
+
+cri=[]
+bad=[]
+fot=[]
+c = int(input("enter no. of students who play cricket: "))
+b = int(input("enter no. of students who play badminton: "))
+f = int(input("enter no. of students who play football: "))
+
+for i in range (c):
+    cri.append(int(input(f"Enter the rollno of student {i+1} who plays cricket: ")))
+for i in range (b):
+    bad.append(int(input(f"Enter the rollno of student {i+1} who plays badminton: ")))
+for i in range (f):
+    fot.append(int(input(f"Enter the rollno of student {i+1} who plays football: ")))
+
+print("\nlist of students who play cricket:", cri)
+print("list of students who play badminton:", bad)
+print("list of students who play football:",fot )
+
+
+cnb=[]  #cricket and badmintoon both
+for i in cri:
+    for j in bad:
+        if i==j:
+            cnb.append(i)
+            
+print(f"\nList of students who play both cricket and badmintion are: {cnb}")
+
+cub=[] # Either cri or bad but not both
+for i in cri:
+    cub.append(i)
+    
+for i in bad:
+    for j in cub:
+        if i!=j:
+            cub.append(i)
+            break
+for i in cub:
+    p = cub.count(i)
+    if p>1:
+        cub.remove(i)
+        cub.remove(i)
+        
+cub.sort()            
+            
+print(f"List of students who play either cricket or badminton but not both:{cub}")
+
+
+ncnb = []   #Neither cri nor bad
+for i in fot:
+    ncnb.append(i)
+a=[]
+for k in fot:
+    for l in cub:
+        if l==k:
+            a.append(l)           
+for v in a:
+    ncnb.remove(v)
+count1=0
+t=0
+for i in ncnb:
+    if t==0:
+        count1+=0
+print(f"Number of students who play neither cricket nor badminton are:{count1}")
+
+cnf=[]  #Cri and foot but not bad
+for i in cri:
+    for j in fot:
+        if i==j:
+            cnf.append(i)
+
+for p in cnf:
+    for q in bad:
+        if p==q:
+            cnf.remove(p)
+            
+count=0
+for d in cnf:
+    if 1>0:
+        count+=1         
+print(f"Number of students who play cricket and football but not badminton are:{count}")
